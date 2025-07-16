@@ -10,8 +10,12 @@ app = Flask(__name__)
 @app.route("/sentimentAnalyzer", methods=["GET", "POST"])
 def sent_analyzer():
     data = request.args.get("textToAnalyze")
-    result = sentiment_analyzer(data)
-    return f"The given text has been identified as {result[0]['label']} with a score of {result[0]['score']}"
+    try:
+        result = sentiment_analyzer(data)
+        return f"The given text has been identified as {result['label']} with a score of {result['score']}"
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+    
 
 @app.route("/", methods=["GET", "POST"])
 def render_index_page():
