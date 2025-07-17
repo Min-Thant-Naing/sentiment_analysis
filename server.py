@@ -11,7 +11,7 @@ app = Flask(__name__)
 def sent_analyzer():
     data = request.args.get("textToAnalyze")
     try:
-        result = sentiment_analyzer(data)
+        result = sentiment_analyzer(data)[0][0]
         return f"The given text has been identified as {result['label']} with a score of {result['score']}"
     except Exception as e:
         return f"An error occurred: {str(e)}"
@@ -22,4 +22,4 @@ def render_index_page():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(port=8000, debug=True)
+    app.run(port=5000, debug=True)
