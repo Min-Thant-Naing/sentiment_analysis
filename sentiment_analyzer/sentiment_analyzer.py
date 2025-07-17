@@ -1,10 +1,11 @@
+import os
 import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 
 API_URL = "https://api-inference.huggingface.co/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english"
-API_TOKEN = "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"
+API_TOKEN = os.getenv("HF_API_KEY")
 
 if not API_TOKEN:
     print("❌ No API key found. Check your .env file.")
